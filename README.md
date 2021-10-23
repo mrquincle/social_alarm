@@ -71,9 +71,8 @@ This might very well have been recorded at 869.2 MHz because the frequencies are
 00000010  00 00 80 3c 00 00 c0 bc  00 00 80 3c 00 00 c0 bc  |...<.......<....|
 ```
 
-A zero or one seems to take 0.5ms, 2 kHz.
+# Synthesize
 
-The zero seems 2.5 sine wave, say 5 kHz, the one is 25(?) sine waves, say 50 kHz.
+To generate the 2-FSK signal, see the `\gnuradio` directory.
 
-Okay, that would mean: 869.205 kHz versus 869.250 kHz.
-
+![Schema](https://raw.githubusercontent.com/mrquincle/social_alarm/main/images/schema_generate.png)
