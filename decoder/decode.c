@@ -8,6 +8,11 @@ int main(int argc, const char** argv) {
 		printf("Requires file name\n");
 		return -1;
 	}
+	
+	unsigned int offset = 7;
+	if (argc > 2) {
+		offset = atoi(argv[2]);
+	}
 
 	printf("Decode file \"%s\"\n", argv[1]);
 
@@ -24,6 +29,7 @@ int main(int argc, const char** argv) {
 	int mov_cnt0 = 0;
 	int mov_cnt1 = 0;
 
+	unsigned int noise = 1;
 	unsigned int buf_res[256];
 	size_t buf_res_ind = 0;
 	do {
@@ -34,7 +40,7 @@ int main(int argc, const char** argv) {
 			cnt += buf[i];
 			//printf("%i ", (int)buf[i]);
 		}
-		if (cnt > buf_len - 3) {
+		if (cnt > buf_len - noise) {
 			if (mov_cnt0) {
 				unsigned int count = round(mov_cnt0 / (float)16);
 				if (count == 1) {
@@ -48,7 +54,7 @@ int main(int argc, const char** argv) {
 			}
 			mov_cnt1++;
 			//printf("1 ");
-		} else if (cnt < 3) {
+		} else if (cnt < noise) {
 			if (mov_cnt1) {
 				unsigned int count = round(mov_cnt1 / (float)16);
 				if (count == 1) {
@@ -77,7 +83,6 @@ int main(int argc, const char** argv) {
 	printf("\n");
 	printf("\n");
 
-	unsigned int offset = 7;
 	int ind = 0;
 
 	// Manchester encoding, translate 10 to 0, and 01 to 1.
