@@ -73,6 +73,17 @@ This might very well have been recorded at 869.2 MHz because the frequencies are
 
 # Synthesize
 
-To generate the 2-FSK signal, see the `\gnuradio` directory.
+To generate the 2-FSK signal, see the `./gnuradio` directory.
 
 ![Schema](https://raw.githubusercontent.com/mrquincle/social_alarm/main/images/schema_generate.png)
+
+The result is not pretty, but the alarm is going off! Yes!!
+
+![Schema](https://raw.githubusercontent.com/mrquincle/social_alarm/main/images/waterfall.png)
+
+# Lessons
+
+It first didn't work because the HackRF was generating just a single "line" on the spectrum, as if it
+had some kind of zero bandwidth setting somewhere. I got a second one and when using this to transmit and the other one to receive, voila!
+
+Only start with this stuff, if you do have an SDR with which you can debug your SDR. :-)
