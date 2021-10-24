@@ -135,9 +135,10 @@ void setup() {
 	// message contents (preambles / sync words) by allowing no sync word: `setDirectSyncWord(0, 0);`.
 	// Suppose we have the message: 0xFE76D1 or 0x01892E (not sure on hi/lo bits).
 	// It is Manchester encoded, then 0xF is 10101010b or in two bytes raw 1010b 1010b, that is 0xAA.
-	//                    or inverted 0x0 is 01010101b or 0xFF.
+	//                    or inverted 0x0 is 01010101b or 0x55.
 	// That what is preceding it is the opposite, I guess for around 24 bits it is alternating bits.
-	// This means probably that the preamble length should be 24.
+	// This means probably that the preamble length should be 24 (in bits).
+	// Also, 0x55 seems to be normal for the preamble, so that means the sync word is 0xAA.
 	uint8_t syncWord[] = {0xAA};
 	state = radio.setSyncWord(syncWord, 1);
 	if (state != ERR_NONE) {
